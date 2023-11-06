@@ -10,4 +10,10 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-validation"
 
     implementation "org.springframework.boot:spring-boot-starter-data-redis"
+
+    implementation "com.baomidou:mybatis-plus-boot-starter"
+    implementation "com.alibaba:druid-spring-boot-starter"
+    implementation "mysql:mysql-connector-java"
+
+//    implementation "org.activiti:activiti-spring-boot-starter"
 }
