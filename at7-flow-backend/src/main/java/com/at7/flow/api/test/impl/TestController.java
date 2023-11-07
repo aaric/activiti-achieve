@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Test Controller
+ * TestController
  *
  * @author Aaric
  * @version 0.1.0-SNAPSHOT

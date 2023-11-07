@@ -25,5 +25,35 @@ dependencyManagement {
     }
 }
 
-
+dependencies {
+    implementation "org.activiti:activiti-engine"
+    implementation "org.activiti:activiti-spring"
+    implementation "org.activiti:activiti-bpmn-model"
+    implementation "org.activiti:activiti-bpmn-converter"
+    implementation "org.activiti:activiti-json-converter"
+    implementation "org.activiti:activiti-bpmn-layout"
+}
 ```
+
+## Init MySQL
+
+```java
+@Slf4j
+@SpringBootTest
+@ExtendWith(SpringExtension.class)
+public class BpmnTests {
+
+    @Autowired
+    private StandaloneProcessEngineConfiguration standaloneProcessEngineConfiguration;
+
+    @Test
+    public void testInitDb() throws Exception {
+        standaloneProcessEngineConfiguration.buildProcessEngine();
+        log.info("ok");
+    }
+}
+```
+
+&emsp;&emsp;**Result:**
+
+![at7 tables](docs/img/at7-tables.png)

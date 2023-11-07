@@ -18,7 +18,7 @@ logging:
         boot: INFO
       hibernate: INFO
     com:
-      zd55: DEBUG
+      at7: DEBUG
   file:
     path: ${LOGGING_FILE_PATH:./}
     name: output.log
@@ -59,9 +59,9 @@ spring:
   application:
     name: at7-flow-backend
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:10.0.11.21}:${MYSQL_PORT:33067}/${MYSQL_DATABASE:testdb}?useSSL=false&characterEncoding=utf8&useUnicode=true&zeroDateTimeBehavior=convertToNull
-    username: ${MYSQL_USERNAME:test}
-    password: ${MYSQL_PASSWORD:test123}
+    url: jdbc:mysql://${MYSQL_HOST:10.0.11.21}:${MYSQL_PORT:33067}/${MYSQL_DATABASE:testdb}?useSSL=false&characterEncoding=utf8&useUnicode=true&zeroDateTimeBehavior=convertToNull&nullCatalogMeansCurrent=true
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
