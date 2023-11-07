@@ -1,6 +1,7 @@
 package com.at7.flow.config;
 
 import lombok.extern.slf4j.Slf4j;
+import org.activiti.engine.ProcessEngineConfiguration;
 import org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +26,7 @@ public class BpmnConfig {
     StandaloneProcessEngineConfiguration standaloneProcessEngineConfiguration() {
         StandaloneProcessEngineConfiguration config = new StandaloneProcessEngineConfiguration();
         config.setDataSource(dataSource);
-        config.setDatabaseSchemaUpdate("true");
+        config.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
         return config;
     }
 }

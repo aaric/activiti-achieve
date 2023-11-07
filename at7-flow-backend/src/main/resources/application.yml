@@ -36,7 +36,7 @@ springdoc:
     - group: 'default'
       display-name: 'default'
       paths-to-match: /api/v1/**
-      packages-to-scan: com.zd55.tool.api
+      packages-to-scan: com.at7.flow.api
   default-flat-param-object: true
 
 # Knife4j settings
