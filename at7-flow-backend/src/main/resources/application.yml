@@ -17,6 +17,7 @@ logging:
         security: INFO
         boot: INFO
       hibernate: INFO
+      activiti: DEBUG
     com:
       at7: DEBUG
   file:
