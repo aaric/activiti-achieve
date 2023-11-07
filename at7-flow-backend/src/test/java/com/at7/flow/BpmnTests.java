@@ -2,6 +2,7 @@ package com.at7.flow;
 
 import lombok.extern.slf4j.Slf4j;
 import org.activiti.engine.*;
+import org.activiti.engine.history.HistoricActivityInstance;
 import org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
@@ -183,6 +184,23 @@ public class BpmnTests {
         try (InputStream pngInputStream = repositoryService.getResourceAsStream(processDefinition.getDeploymentId(), processDefinition.getDiagramResourceName());
              FileOutputStream pngOutputStream = new FileOutputStream(new File(DESKTOP_PATH, processDefinition.getDiagramResourceName()))) {
             IOUtils.copy(pngInputStream, pngOutputStream);
+        }
+    }
+
+
+    @Test
+    public void testActivityHistory() throws Exception {
+        ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
+        HistoryService historyService = processEngine.getHistoryService();
+        List<HistoricActivityInstance> activityInstanceList = historyService.createHistoricActivityInstanceQuery()
+                //.processDefinitionId("Test01:1:2504")
+                .processInstanceId("5001")
+                .orderByHistoricActivityInstanceStartTime()
+                .asc()
+                .list();
+        for (HistoricActivityInstance activityInstance : activityInstanceList) {
+            log.info("id={}, name={}, pdId={}, piId={}", activityInstance.getActivityId(), activityInstance.getActivityName(),
+                    activityInstance.getProcessDefinitionId(), activityInstance.getProcessInstanceId());
         }
     }
 }
