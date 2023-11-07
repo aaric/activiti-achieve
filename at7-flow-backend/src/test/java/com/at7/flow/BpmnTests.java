@@ -11,9 +11,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
+import java.util.zip.ZipInputStream;
 
 /**
  * BpmnTests
@@ -62,6 +64,22 @@ public class BpmnTests {
                 .addClasspathResource("processes/Test01.bpmn20.xml")
                 .addClasspathResource("processes/Test01.png")
                 .name("Test01")
+                .deploy();
+        log.info("id = {}, name = {}", deployment.getId(), deployment.getName());
+    }
+
+    @Disabled
+    @Test
+    public void testFlowDeployZip() throws Exception {
+        ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
+        RepositoryService repositoryService = processEngine.getRepositoryService();
+
+        repositoryService.deleteDeployment("1");
+
+        ClassPathResource classPathResource = new ClassPathResource("processes/Test01.zip");
+        ZipInputStream zipInputStream = new ZipInputStream(classPathResource.getInputStream());
+        Deployment deployment = repositoryService.createDeployment()
+                .addZipInputStream(zipInputStream)
                 .deploy();
         log.info("id = {}, name = {}", deployment.getId(), deployment.getName());
     }
