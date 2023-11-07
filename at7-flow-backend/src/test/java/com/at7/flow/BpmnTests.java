@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.activiti.engine.*;
 import org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration;
 import org.activiti.engine.repository.Deployment;
+import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.junit.jupiter.api.Disabled;
@@ -74,12 +75,13 @@ public class BpmnTests {
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
         RepositoryService repositoryService = processEngine.getRepositoryService();
 
-        repositoryService.deleteDeployment("1");
+        repositoryService.deleteDeployment("2501", true);
 
         ClassPathResource classPathResource = new ClassPathResource("processes/Test01.zip");
         ZipInputStream zipInputStream = new ZipInputStream(classPathResource.getInputStream());
         Deployment deployment = repositoryService.createDeployment()
                 .addZipInputStream(zipInputStream)
+                .name("Test01Zip")
                 .deploy();
         log.info("id = {}, name = {}", deployment.getId(), deployment.getName());
     }
@@ -116,6 +118,7 @@ public class BpmnTests {
         }
     }
 
+    @Disabled
     @Test
     public void testTaskComplete() throws Exception {
         // ACT_GE_PROPERTY
@@ -139,5 +142,21 @@ public class BpmnTests {
                 .taskAssignee("cc")
                 .singleResult();
         taskService.complete(task.getId());
+    }
+
+    @Disabled
+    @Test
+    public void testFlowInfo() throws Exception {
+        ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
+        RepositoryService repositoryService = processEngine.getRepositoryService();
+        List<ProcessDefinition> processDefinitionList = repositoryService.createProcessDefinitionQuery()
+                .processDefinitionKey("Test01")
+                .orderByProcessDefinitionVersion()
+                .desc()
+                .list();
+        for (ProcessDefinition processDefinition : processDefinitionList) {
+            log.info("id={}, name={}, key={}, version={}, dId={}", processDefinition.getId(), processDefinition.getKey(),
+                    processDefinition.getName(), processDefinition.getVersion(), processDefinition.getDeploymentId());
+        }
     }
 }
