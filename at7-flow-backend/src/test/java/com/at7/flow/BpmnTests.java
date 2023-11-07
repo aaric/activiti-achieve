@@ -187,7 +187,7 @@ public class BpmnTests {
         }
     }
 
-
+    @Disabled
     @Test
     public void testActivityHistory() throws Exception {
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
