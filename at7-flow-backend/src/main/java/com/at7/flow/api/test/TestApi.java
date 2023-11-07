@@ -9,7 +9,7 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * Test Api
+ * TestApi
  *
  * @author Aaric
  * @version 0.1.0-SNAPSHOT

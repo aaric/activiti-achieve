@@ -5,6 +5,7 @@ build/
 *.log
 *.gz
 *.log.gz
+*.hprof
 application-*.yml
 bootstrap-*.yml
 .DS_Store
