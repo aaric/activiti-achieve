@@ -40,7 +40,7 @@ public class BpmnTests {
     @Autowired
     private StandaloneProcessEngineConfiguration standaloneProcessEngineConfiguration;
 
-    private String bizKey = "custom001";
+    private String bizKey = "custom002";
 
     @Disabled
     @Test
@@ -70,7 +70,7 @@ public class BpmnTests {
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
         RepositoryService repositoryService = processEngine.getRepositoryService();
 
-        repositoryService.deleteDeployment("2501", true);
+        repositoryService.deleteDeployment("5001", true);
 
         ClassPathResource classPathResource = new ClassPathResource("processes/Process01.zip");
         ZipInputStream zipInputStream = new ZipInputStream(classPathResource.getInputStream());
@@ -88,7 +88,6 @@ public class BpmnTests {
         RuntimeService runtimeService = processEngine.getRuntimeService();
 //        ProcessInstance instance = runtimeService.startProcessInstanceByKey("Test01");
         ProcessInstance instance = runtimeService.startProcessInstanceByKey("Process01", bizKey);
-        // pdId=Test01:1:2504, id=5001
         log.info("pdId={}, id={}", instance.getProcessDefinitionId(), instance.getId());
     }
 
@@ -199,6 +198,24 @@ public class BpmnTests {
         } else {
             repositoryService.suspendProcessDefinitionById(processDefinition.getId(), true, null);
             log.info("pdId={}, isSuspended={}, activate=false", processDefinition.getId(), processDefinition.isSuspended());
+        }
+    }
+
+    @Disabled
+    @Test
+    public void testProcessInstanceSuspend() throws Exception {
+        ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
+        RuntimeService runtimeService = processEngine.getRuntimeService();
+        ProcessInstance processInstance = runtimeService.createProcessInstanceQuery()
+                .processInstanceId("17501")
+                .singleResult();
+
+        if (processInstance.isSuspended()) {
+            runtimeService.activateProcessInstanceById(processInstance.getId());
+            log.info("piId={}, isSuspended={}, activate=true", processInstance.getId(), processInstance.isSuspended());
+        } else {
+            runtimeService.suspendProcessInstanceById(processInstance.getId());
+            log.info("piId={}, isSuspended={}, activate=true", processInstance.getId(), processInstance.isSuspended());
         }
     }
 }
