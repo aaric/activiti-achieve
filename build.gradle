@@ -17,7 +17,8 @@ allprojects {
 //        springCloudVersion = "Hoxton.SR12"
 //        springCloudAlibabaVersion = "2.2.9.RELEASE"
         knife4jVersion = "4.3.0"
-        activitiVersion = "7.4.0"
+        activitiVersion = "8.0.0"
+//        activitiVersion = "7.4.0"
     }
 
     repositories {
