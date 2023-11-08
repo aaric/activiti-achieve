@@ -33,7 +33,7 @@ public class BpmnUelTests {
     @Autowired
     private StandaloneProcessEngineConfiguration standaloneProcessEngineConfiguration;
 
-    private String bizKey = "custom003";
+    private String bizKey = "custom005";
 
     @Disabled
     @Test
@@ -54,7 +54,7 @@ public class BpmnUelTests {
 
     @Disabled
     @Test
-    public void testFlowStart() throws Exception {
+    public void testFlowStartWithUel() throws Exception {
         // ACT_RU_VARIABLE
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
         RuntimeService runtimeService = processEngine.getRuntimeService();
@@ -64,6 +64,15 @@ public class BpmnUelTests {
             put("cc", "wangwu");
         }};
         ProcessInstance instance = runtimeService.startProcessInstanceByKey("Process02", bizKey, variables);
+        log.info("pdId={}, id={}", instance.getProcessDefinitionId(), instance.getId());
+    }
+
+    @Disabled
+    @Test
+    public void testFlowStartWithTaskListener() throws Exception {
+        ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
+        RuntimeService runtimeService = processEngine.getRuntimeService();
+        ProcessInstance instance = runtimeService.startProcessInstanceByKey("Process03", bizKey);
         log.info("pdId={}, id={}", instance.getProcessDefinitionId(), instance.getId());
     }
 }
