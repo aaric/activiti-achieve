@@ -40,6 +40,8 @@ public class BpmnTests {
     @Autowired
     private StandaloneProcessEngineConfiguration standaloneProcessEngineConfiguration;
 
+    private String bizKey = "custom001";
+
     @Disabled
     @Test
     public void testInitDb() throws Exception {
@@ -85,7 +87,6 @@ public class BpmnTests {
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
         RuntimeService runtimeService = processEngine.getRuntimeService();
 //        ProcessInstance instance = runtimeService.startProcessInstanceByKey("Test01");
-        String bizKey = "custom001";
         ProcessInstance instance = runtimeService.startProcessInstanceByKey("Process01", bizKey);
         // pdId=Test01:1:2504, id=5001
         log.info("pdId={}, id={}", instance.getProcessDefinitionId(), instance.getId());
@@ -166,6 +167,38 @@ public class BpmnTests {
         for (HistoricActivityInstance activityInstance : activityInstanceList) {
             log.info("id={}, name={}, pdId={}, piId={}", activityInstance.getActivityId(), activityInstance.getActivityName(),
                     activityInstance.getProcessDefinitionId(), activityInstance.getProcessInstanceId());
+        }
+    }
+
+    @Disabled
+    @Test
+    public void testProcessQuery() throws Exception {
+        ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
+        RuntimeService runtimeService = processEngine.getRuntimeService();
+        List<ProcessInstance> processInstanceList = runtimeService.createProcessInstanceQuery()
+                .processInstanceBusinessKey(bizKey)
+                .list();
+        for (ProcessInstance instance : processInstanceList) {
+            log.info("iId={}, piId={}, isEnded={}, isSuspended={}", instance.getId(), instance.getProcessInstanceId(),
+                    instance.isEnded(), instance.isSuspended());
+        }
+    }
+
+    @Disabled
+    @Test
+    public void testProcessSuspend() throws Exception {
+        ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
+        RepositoryService repositoryService = processEngine.getRepositoryService();
+        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
+                .processDefinitionKey("Process01")
+                .singleResult();
+
+        if (processDefinition.isSuspended()) {
+            repositoryService.activateProcessDefinitionById(processDefinition.getId(), true, null);
+            log.info("pdId={}, isSuspended={}, activate=true", processDefinition.getId(), processDefinition.isSuspended());
+        } else {
+            repositoryService.suspendProcessDefinitionById(processDefinition.getId(), true, null);
+            log.info("pdId={}, isSuspended={}, activate=false", processDefinition.getId(), processDefinition.isSuspended());
         }
     }
 }

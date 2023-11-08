@@ -58,7 +58,7 @@ spring:
       max-file-size: 100MB
       max-request-size: 100MB
   application:
-    name: at7-flow-backend
+    name: at8-flow-backend
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:10.0.11.21}:${MYSQL_PORT:33067}/${MYSQL_DATABASE:at8db}?useSSL=false&characterEncoding=utf8&useUnicode=true&zeroDateTimeBehavior=convertToNull&nullCatalogMeansCurrent=true
     username: ${MYSQL_USERNAME:root}
