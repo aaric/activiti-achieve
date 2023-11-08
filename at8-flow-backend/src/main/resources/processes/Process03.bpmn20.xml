@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="Process03" name="Process03" isExecutable="true">
+    <extensionElements />
+    <startEvent id="Event_0k6ehdv" name="开始">
+      <outgoing>Flow_1804lws</outgoing>
+    </startEvent>
+    <userTask id="Activity_1ol4k7e" name="创建申请">
+      <extensionElements>
+        <activiti:taskListener class="com.at8.flow.bpmn.listener.task.MyTaskListener" event="create" />
+      </extensionElements>
+      <incoming>Flow_1804lws</incoming>
+      <outgoing>Flow_04rsiyn</outgoing>
+    </userTask>
+    <sequenceFlow id="Flow_1804lws" sourceRef="Event_0k6ehdv" targetRef="Activity_1ol4k7e" />
+    <userTask id="Activity_02oudzs" name="审核申请">
+      <extensionElements>
+        <activiti:taskListener class="com.at8.flow.bpmn.listener.task.MyTaskListener" event="create" />
+      </extensionElements>
+      <incoming>Flow_04rsiyn</incoming>
+      <outgoing>Flow_1bsjwl8</outgoing>
+    </userTask>
+    <sequenceFlow id="Flow_04rsiyn" sourceRef="Activity_1ol4k7e" targetRef="Activity_02oudzs" />
+    <intermediateThrowEvent id="Event_1ej4kll" name="结束">
+      <incoming>Flow_1bsjwl8</incoming>
+    </intermediateThrowEvent>
+    <sequenceFlow id="Flow_1bsjwl8" sourceRef="Activity_02oudzs" targetRef="Event_1ej4kll" />
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Process03">
+    <bpmndi:BPMNPlane id="BPMNPlane_Process03" bpmnElement="Process03">
+      <bpmndi:BPMNShape id="Event_0k6ehdv_di" bpmnElement="Event_0k6ehdv">
+        <omgdc:Bounds x="152" y="72" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="159" y="115" width="22" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ol4k7e_di" bpmnElement="Activity_1ol4k7e">
+        <omgdc:Bounds x="240" y="50" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_02oudzs_di" bpmnElement="Activity_02oudzs">
+        <omgdc:Bounds x="400" y="50" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ej4kll_di" bpmnElement="Event_1ej4kll">
+        <omgdc:Bounds x="562" y="72" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="569" y="115" width="22" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1804lws_di" bpmnElement="Flow_1804lws">
+        <omgdi:waypoint x="188" y="90" />
+        <omgdi:waypoint x="240" y="90" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04rsiyn_di" bpmnElement="Flow_04rsiyn">
+        <omgdi:waypoint x="340" y="90" />
+        <omgdi:waypoint x="400" y="90" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1bsjwl8_di" bpmnElement="Flow_1bsjwl8">
+        <omgdi:waypoint x="500" y="90" />
+        <omgdi:waypoint x="562" y="90" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
