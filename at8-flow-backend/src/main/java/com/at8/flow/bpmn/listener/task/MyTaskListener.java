@@ -17,10 +17,10 @@ public class MyTaskListener implements TaskListener {
         if (StringUtils.equals(delegateTask.getEventName(), "create")) {
             switch (delegateTask.getName()) {
                 case "创建申请":
-                    delegateTask.setAssignee("abc");
+                    delegateTask.setAssignee("zhaoliu");
                     break;
                 case "审核申请":
-                    delegateTask.setAssignee("def");
+                    delegateTask.setAssignee("tianqi");
                     break;
                 default:
             }
