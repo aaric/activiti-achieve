@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Flow Application
  *
  * @author Aaric
- * @version 0.1.0-SNAPSHOT
+ * @version 0.4.0-SNAPSHOT
  */
 @OpenAPIDefinition(
         info = @Info(

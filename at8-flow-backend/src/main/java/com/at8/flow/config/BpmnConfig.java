@@ -13,7 +13,7 @@ import javax.sql.DataSource;
  * Activiti BPMN Config
  *
  * @author Aaric
- * @version 0.2.0-SNAPSHOT
+ * @version 0.8.0-SNAPSHOT
  */
 @Slf4j
 @Configuration

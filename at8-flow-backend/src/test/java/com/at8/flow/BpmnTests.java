@@ -48,31 +48,16 @@ public class BpmnTests {
 
     @Disabled
     @Test
-    public void testGetServices() throws Exception {
-        ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
-        RepositoryService repositoryService = processEngine.getRepositoryService();
-        RuntimeService runtimeService = processEngine.getRuntimeService();
-        TaskService taskService = processEngine.getTaskService();
-        HistoryService historyService = processEngine.getHistoryService();
-        ManagementService managementService = processEngine.getManagementService();
-    }
-
-    @Disabled
-    @Test
     public void testFlowDeploy() throws Exception {
-        // ACT_GE_PROPERTY    更新版本号
-        // ACT_RE_DEPLOYMENT  流程信息
-        // ACT_RE_PROCDEF     流程定义
-        // ACT_GE_BYTEARRAY   流程资源
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
         RepositoryService repositoryService = processEngine.getRepositoryService();
 
         repositoryService.deleteDeployment("1");
 
         Deployment deployment = repositoryService.createDeployment()
-                .addClasspathResource("processes/Test01.bpmn20.xml")
-                .addClasspathResource("processes/Test01.png")
-                .name("Test01")
+                .addClasspathResource("processes/Process01.bpmn20.xml")
+                .addClasspathResource("processes/Process01.png")
+                .name("测试流程01")
                 .deploy();
         log.info("id = {}, name = {}", deployment.getId(), deployment.getName());
     }
@@ -85,11 +70,11 @@ public class BpmnTests {
 
         repositoryService.deleteDeployment("2501", true);
 
-        ClassPathResource classPathResource = new ClassPathResource("processes/Test01.zip");
+        ClassPathResource classPathResource = new ClassPathResource("processes/Process01.zip");
         ZipInputStream zipInputStream = new ZipInputStream(classPathResource.getInputStream());
         Deployment deployment = repositoryService.createDeployment()
                 .addZipInputStream(zipInputStream)
-                .name("Test01Zip")
+                .name("测试流程01Zip")
                 .deploy();
         log.info("id = {}, name = {}", deployment.getId(), deployment.getName());
     }
@@ -97,19 +82,11 @@ public class BpmnTests {
     @Disabled
     @Test
     public void testFlowStart() throws Exception {
-        // ACT_GE_PROPERTY    更新版本号
-        // ACT_HI_ACTINST
-        // ACT_HI_IDENTITYLINK
-        // ACT_HI_PROCINST
-        // ACT_HI_TASKINST
-        // ACT_RU_EXECUTION
-        // ACT_RU_IDENTITYLINK
-        // ACT_RU_TASK
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
         RuntimeService runtimeService = processEngine.getRuntimeService();
 //        ProcessInstance instance = runtimeService.startProcessInstanceByKey("Test01");
         String bizKey = "custom001";
-        ProcessInstance instance = runtimeService.startProcessInstanceByKey("Test01", bizKey);
+        ProcessInstance instance = runtimeService.startProcessInstanceByKey("Process01", bizKey);
         // pdId=Test01:1:2504, id=5001
         log.info("pdId={}, id={}", instance.getProcessDefinitionId(), instance.getId());
     }
@@ -120,7 +97,7 @@ public class BpmnTests {
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
         TaskService taskService = processEngine.getTaskService();
         List<Task> taskList = taskService.createTaskQuery()
-                .processDefinitionKey("Test01")
+                .processDefinitionKey("Process01")
                 .taskAssignee("aa")
                 .list();
         for (Task task : taskList) {
@@ -131,24 +108,10 @@ public class BpmnTests {
     @Disabled
     @Test
     public void testTaskComplete() throws Exception {
-        // ACT_GE_PROPERTY
-        // ACT_RU_TASK
-        // ACT_RU_VARIABLE
-        // ACT_RE_PROCDEF
-        // ACT_RE_DEPLOYMENT
-        // ACT_GE_BYTEARRAY
-        // ACT_RE_PROCDEF
-        // ACT_PROCDEF_INFO
-
-        // ACT_HI_TASKINST
-        // ACT_HI_ACTINST
-        // ACT_HI_IDENTITYLINK
-        // ACT_RU_TASK
-        // ACT_RU_IDENTITYLINK
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
         TaskService taskService = processEngine.getTaskService();
         Task task = taskService.createTaskQuery()
-                .processDefinitionKey("Test01")
+                .processDefinitionKey("Process01")
                 .taskAssignee("cc")
                 .singleResult();
         taskService.complete(task.getId());
@@ -160,7 +123,7 @@ public class BpmnTests {
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
         RepositoryService repositoryService = processEngine.getRepositoryService();
         List<ProcessDefinition> processDefinitionList = repositoryService.createProcessDefinitionQuery()
-                .processDefinitionKey("Test01")
+                .processDefinitionKey("Process01")
                 .orderByProcessDefinitionVersion()
                 .desc()
                 .list();
@@ -176,7 +139,7 @@ public class BpmnTests {
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
         RepositoryService repositoryService = processEngine.getRepositoryService();
         ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
-                .processDefinitionKey("Test01")
+                .processDefinitionKey("Process01")
                 .singleResult();
         try (InputStream xmlInputStream = repositoryService.getResourceAsStream(processDefinition.getDeploymentId(), processDefinition.getResourceName());
              FileOutputStream xmlOutputStream = new FileOutputStream(new File(DESKTOP_PATH, processDefinition.getResourceName()))) {
@@ -189,14 +152,14 @@ public class BpmnTests {
         }
     }
 
-//    @Disabled
+    @Disabled
     @Test
     public void testActivityHistory() throws Exception {
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
         HistoryService historyService = processEngine.getHistoryService();
         List<HistoricActivityInstance> activityInstanceList = historyService.createHistoricActivityInstanceQuery()
-                //.processDefinitionId("Test01:1:2504")
-                .processInstanceId("5001")
+                .processDefinitionId("Process01:1:5004")
+//                .processInstanceId("5001")
                 .orderByHistoricActivityInstanceStartTime()
                 .asc()
                 .list();
