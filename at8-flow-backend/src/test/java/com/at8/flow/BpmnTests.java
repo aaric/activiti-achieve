@@ -1,4 +1,4 @@
-package com.at7.flow;
+package com.at8.flow;
 
 import lombok.extern.slf4j.Slf4j;
 import org.activiti.engine.*;
@@ -189,7 +189,7 @@ public class BpmnTests {
         }
     }
 
-    @Disabled
+//    @Disabled
     @Test
     public void testActivityHistory() throws Exception {
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();

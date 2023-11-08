@@ -7,3 +7,4 @@ pluginManagement {
 rootProject.name = "activiti-achieve"
 
 include "at7-flow-backend"
+include "at8-flow-backend"
