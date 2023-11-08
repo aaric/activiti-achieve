@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
-  <process id="Process01" name="测试流程" isExecutable="true">
-    <startEvent id="sid-b9c3fc98-9852-4c1a-9772-d6c554a853dc"/>
-    <endEvent id="sid-7e9d7260-3705-434b-9d57-8e4da77549fb"/>
+  <process id="Process01" name="测试流程01" isExecutable="true">
+    <startEvent id="sid-b9c3fc98-9852-4c1a-9772-d6c554a853dc" name="开始"/>
+    <endEvent id="sid-7e9d7260-3705-434b-9d57-8e4da77549fb" name="结束"/>
     <userTask id="sid-abb7591f-1dbb-4789-a5d4-be7dba25fc81" name="开始作业" activiti:assignee="aa"/>
     <userTask id="sid-919ea977-42d8-461c-a01a-f3c30c29b902" name="拧螺丝" activiti:assignee="bb"/>
     <userTask id="sid-59721469-dad2-4a4b-ac82-312b386ae1ae" name="喷漆" activiti:assignee="cc"/>
@@ -14,35 +14,35 @@
   <bpmndi:BPMNDiagram id="BPMNDiagram_Process01">
     <bpmndi:BPMNPlane bpmnElement="Process01" id="BPMNPlane_Process01">
       <bpmndi:BPMNShape id="shape-bb3555fa-3952-4d07-8836-b9777b5b3c69" bpmnElement="sid-b9c3fc98-9852-4c1a-9772-d6c554a853dc">
-        <omgdc:Bounds x="-90.0" y="-175.0" width="30.0" height="30.0"/>
+        <omgdc:Bounds x="-320.0" y="-175.0" width="30.0" height="30.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape-2b7c1360-5531-4cac-9a5b-6ac3f84efc16" bpmnElement="sid-7e9d7260-3705-434b-9d57-8e4da77549fb">
-        <omgdc:Bounds x="-90.0" y="150.0" width="30.0" height="30.0"/>
+        <omgdc:Bounds x="-320.0" y="150.0" width="30.0" height="30.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape-44430a75-c3e4-41c2-afbc-8cafcd791e7a" bpmnElement="sid-abb7591f-1dbb-4789-a5d4-be7dba25fc81">
-        <omgdc:Bounds x="-122.5" y="-115.0" width="95.0" height="55.0"/>
+        <omgdc:Bounds x="-352.5" y="-115.0" width="95.0" height="55.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape-ab4a2a9e-f3b1-4dde-b5ad-8d1a133ed21c" bpmnElement="sid-919ea977-42d8-461c-a01a-f3c30c29b902">
-        <omgdc:Bounds x="-122.5" y="-30.0" width="95.0" height="55.0"/>
+        <omgdc:Bounds x="-352.5" y="-30.0" width="95.0" height="55.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape-5182b5ae-0a9f-417a-9d2d-ff00a8969ef8" bpmnElement="sid-59721469-dad2-4a4b-ac82-312b386ae1ae">
-        <omgdc:Bounds x="-122.5" y="55.0" width="95.0" height="55.0"/>
+        <omgdc:Bounds x="-352.5" y="55.0" width="95.0" height="55.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="edge-08c33679-7d97-4b59-a27c-518a30e44724" bpmnElement="sid-3f6dfd38-8283-458d-9c73-c530cb2664ab">
-        <omgdi:waypoint x="-75.0" y="-145.0"/>
-        <omgdi:waypoint x="-75.0" y="-115.0"/>
+        <omgdi:waypoint x="-305.0" y="-145.0"/>
+        <omgdi:waypoint x="-305.0" y="-115.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge-a22b4d2a-070c-4285-b0aa-2e3b28e74a8b" bpmnElement="sid-a1a37c22-aff4-4761-96bf-c4c06f8036c6">
-        <omgdi:waypoint x="-75.0" y="-60.0"/>
-        <omgdi:waypoint x="-75.0" y="-30.0"/>
+        <omgdi:waypoint x="-305.0" y="-60.0"/>
+        <omgdi:waypoint x="-305.0" y="-30.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge-7753453c-3732-4fad-bbf8-466d937eaadb" bpmnElement="sid-daf46262-eba4-4abc-9063-be5bb779c3bf">
-        <omgdi:waypoint x="-75.0" y="25.0"/>
-        <omgdi:waypoint x="-75.0" y="55.0"/>
+        <omgdi:waypoint x="-305.0" y="25.0"/>
+        <omgdi:waypoint x="-305.0" y="55.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge-33843213-68c2-4a7d-8d45-646d34e0a23a" bpmnElement="sid-eb9446a4-2cfd-4fb9-a194-8a79379a7e20">
-        <omgdi:waypoint x="-75.0" y="110.0"/>
-        <omgdi:waypoint x="-75.0" y="150.0"/>
+        <omgdi:waypoint x="-305.0" y="110.0"/>
+        <omgdi:waypoint x="-305.0" y="150.0"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
