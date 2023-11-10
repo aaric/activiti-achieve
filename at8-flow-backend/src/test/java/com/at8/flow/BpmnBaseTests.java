@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.zip.ZipInputStream;
 
 /**
- * BpmnTests
+ * BpmnBaseTests
  *
  * @author Aaric
  * @version 0.2.0-SNAPSHOT
@@ -33,7 +33,7 @@ import java.util.zip.ZipInputStream;
 @Slf4j
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-public class BpmnTests {
+public class BpmnBaseTests {
 
     public static final String DESKTOP_PATH = FileSystemView.getFileSystemView().getHomeDirectory().getAbsolutePath();
 
