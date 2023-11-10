@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.zip.ZipInputStream;
 
 /**
- * BpmnUelConditionTests
+ * BpmnConditionTests
  *
  * @author Aaric
  * @version 0.6.0-SNAPSHOT
@@ -31,7 +31,7 @@ import java.util.zip.ZipInputStream;
 @Slf4j
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-public class BpmnUelConditionTests {
+public class BpmnConditionTests {
 
     @Autowired
     private StandaloneProcessEngineConfiguration standaloneProcessEngineConfiguration;
