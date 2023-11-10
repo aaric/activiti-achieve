@@ -1,5 +1,6 @@
 package com.at8.flow;
 
+import com.at8.flow.pojo.Form;
 import lombok.extern.slf4j.Slf4j;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.RepositoryService;
@@ -17,23 +18,24 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.HashMap;
 import java.util.zip.ZipInputStream;
 
 /**
- * BpmnGroupTests
+ * BpmnGatewayExclusiveTests
  *
  * @author Aaric
- * @version 0.6.0-SNAPSHOT
+ * @version 0.7.0-SNAPSHOT
  */
 @Slf4j
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-public class BpmnGroupTests {
+public class BpmnGatewayExclusiveTests {
 
     @Autowired
     private StandaloneProcessEngineConfiguration standaloneProcessEngineConfiguration;
 
-    private String bizKey = "custom009";
+    private String bizKey = "custom010";
 
     @Disabled
     @Test
@@ -43,11 +45,11 @@ public class BpmnGroupTests {
 
 //        repositoryService.deleteDeployment("5001", true);
 
-        ClassPathResource classPathResource = new ClassPathResource("processes/Process05.zip");
+        ClassPathResource classPathResource = new ClassPathResource("processes/Process06.zip");
         ZipInputStream zipInputStream = new ZipInputStream(classPathResource.getInputStream());
         Deployment deployment = repositoryService.createDeployment()
                 .addZipInputStream(zipInputStream)
-                .name("测试流程05")
+                .name("测试流程06")
                 .deploy();
         log.info("id = {}, name = {}", deployment.getId(), deployment.getName());
     }
@@ -58,33 +60,8 @@ public class BpmnGroupTests {
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
         RuntimeService runtimeService = processEngine.getRuntimeService();
 
-        ProcessInstance instance = runtimeService.startProcessInstanceByKey("Process05", bizKey);
+        ProcessInstance instance = runtimeService.startProcessInstanceByKey("Process06", bizKey);
         log.info("pdId={}, id={}", instance.getProcessDefinitionId(), instance.getId());
-    }
-
-    @Disabled
-    @Test
-    public void testTaskClaim() throws Exception {
-        ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
-        TaskService taskService = processEngine.getTaskService();
-
-        String userId = "cc";
-        Task task = taskService.createTaskQuery()
-                .processDefinitionKey("Process05")
-                .taskCandidateUser(userId)
-                .singleResult();
-        if (null != task) {
-            taskService.claim(task.getId(), userId);
-            log.info("id={}, claim={}", task.getId(), userId);
-        }
-
-        /*task = taskService.createTaskQuery()
-                .processDefinitionKey("Process05")
-                .taskAssignee(userId)
-                .singleResult();
-        if (null != task) {
-            taskService.setAssignee(task.getId(), null);
-        }*/
     }
 
     @Disabled
@@ -93,12 +70,18 @@ public class BpmnGroupTests {
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
         TaskService taskService = processEngine.getTaskService();
         Task task = taskService.createTaskQuery()
-                .processDefinitionKey("Process05")
-                .taskAssignee("cc")
+                .processDefinitionKey("Process06")
+                .taskAssignee("bb")
                 .singleResult();
 
         if (null != task) {
-            taskService.complete(task.getId());
+            Form form = new Form()
+                    .setBizKey(bizKey)
+                    .setNum(5D)
+                    .setRemark("出差5天");
+            taskService.complete(task.getId(), new HashMap<>() {{
+                put("form", form);
+            }});
         }
     }
 }
