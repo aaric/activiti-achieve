@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="Process06" name="测试流程06" isExecutable="true">
+    <startEvent id="Event_17zpb6y">
+      <outgoing>Flow_0g42in7</outgoing>
+    </startEvent>
+    <userTask id="Activity_0h87ne7" name="填写出差申请单" activiti:assignee="aa">
+      <incoming>Flow_0g42in7</incoming>
+      <outgoing>Flow_1vywueq</outgoing>
+    </userTask>
+    <sequenceFlow id="Flow_0g42in7" sourceRef="Event_17zpb6y" targetRef="Activity_0h87ne7" />
+    <userTask id="Activity_0vhhrg4" name="部门经理审核" activiti:assignee="bb">
+      <incoming>Flow_1vywueq</incoming>
+      <outgoing>Flow_0p10bm2</outgoing>
+    </userTask>
+    <sequenceFlow id="Flow_1vywueq" sourceRef="Activity_0h87ne7" targetRef="Activity_0vhhrg4" />
+    <exclusiveGateway id="Gateway_1xgnp0r">
+      <incoming>Flow_0p10bm2</incoming>
+      <outgoing>Flow_0px124z</outgoing>
+      <outgoing>Flow_05rio83</outgoing>
+    </exclusiveGateway>
+    <sequenceFlow id="Flow_0p10bm2" sourceRef="Activity_0vhhrg4" targetRef="Gateway_1xgnp0r" />
+    <endEvent id="Event_0w0kywx">
+      <incoming>Flow_0px124z</incoming>
+      <incoming>Flow_0aqp97p</incoming>
+    </endEvent>
+    <sequenceFlow id="Flow_0px124z" sourceRef="Gateway_1xgnp0r" targetRef="Event_0w0kywx">
+      <conditionExpression xsi:type="tFormalExpression">${form.num &lt;3}</conditionExpression>
+    </sequenceFlow>
+    <userTask id="Activity_1cr1vhm" name="总经理审核" activiti:assignee="cc">
+      <incoming>Flow_05rio83</incoming>
+      <outgoing>Flow_0aqp97p</outgoing>
+    </userTask>
+    <sequenceFlow id="Flow_05rio83" sourceRef="Gateway_1xgnp0r" targetRef="Activity_1cr1vhm">
+      <conditionExpression xsi:type="tFormalExpression">${form.num&gt;=3}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="Flow_0aqp97p" sourceRef="Activity_1cr1vhm" targetRef="Event_0w0kywx" />
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Process06">
+    <bpmndi:BPMNPlane id="BPMNPlane_Process06" bpmnElement="Process06">
+      <bpmndi:BPMNShape id="Event_17zpb6y_di" bpmnElement="Event_17zpb6y">
+        <omgdc:Bounds x="192" y="202" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0h87ne7_di" bpmnElement="Activity_0h87ne7">
+        <omgdc:Bounds x="280" y="180" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vhhrg4_di" bpmnElement="Activity_0vhhrg4">
+        <omgdc:Bounds x="440" y="180" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1xgnp0r_di" bpmnElement="Gateway_1xgnp0r" isMarkerVisible="true">
+        <omgdc:Bounds x="605" y="195" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0w0kywx_di" bpmnElement="Event_0w0kywx">
+        <omgdc:Bounds x="852" y="202" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1cr1vhm_di" bpmnElement="Activity_1cr1vhm">
+        <omgdc:Bounds x="700" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0g42in7_di" bpmnElement="Flow_0g42in7">
+        <omgdi:waypoint x="228" y="220" />
+        <omgdi:waypoint x="280" y="220" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vywueq_di" bpmnElement="Flow_1vywueq">
+        <omgdi:waypoint x="380" y="220" />
+        <omgdi:waypoint x="440" y="220" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0p10bm2_di" bpmnElement="Flow_0p10bm2">
+        <omgdi:waypoint x="540" y="220" />
+        <omgdi:waypoint x="605" y="220" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0px124z_di" bpmnElement="Flow_0px124z">
+        <omgdi:waypoint x="655" y="220" />
+        <omgdi:waypoint x="852" y="220" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05rio83_di" bpmnElement="Flow_05rio83">
+        <omgdi:waypoint x="630" y="195" />
+        <omgdi:waypoint x="630" y="120" />
+        <omgdi:waypoint x="700" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0aqp97p_di" bpmnElement="Flow_0aqp97p">
+        <omgdi:waypoint x="800" y="120" />
+        <omgdi:waypoint x="870" y="120" />
+        <omgdi:waypoint x="870" y="202" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

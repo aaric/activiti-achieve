@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * BpmnUelVariableTests
+ * BpmnVariableTests
  *
  * @author Aaric
  * @version 0.6.0-SNAPSHOT
@@ -25,7 +25,7 @@ import java.util.Map;
 @Slf4j
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-public class BpmnUelVariableTests {
+public class BpmnVariableTests {
 
     @Autowired
     private StandaloneProcessEngineConfiguration standaloneProcessEngineConfiguration;
