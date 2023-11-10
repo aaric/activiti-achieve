@@ -84,6 +84,59 @@ public class BpmnUelConditionTests {
                 .processDefinitionKey("Process04")
                 .taskAssignee("wangwu")
                 .singleResult();
-        taskService.complete(task.getId());
+        if (null != task) {
+            Form form = new Form()
+                    .setBizKey(bizKey)
+                    .setNum(2D)
+                    .setRemark("只允许出差2天");
+
+            taskService.complete(task.getId(), new HashMap<>() {{
+                put("form", form);
+            }});
+        }
+    }
+
+    @Disabled
+    @Test
+    public void testTaskCompleteWithGlobalVariable() throws Exception {
+        ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
+        TaskService taskService = processEngine.getTaskService();
+        Task task = taskService.createTaskQuery()
+                .processDefinitionKey("Process04")
+                .taskAssignee("lisi")
+                .singleResult();
+
+        if (null != task) {
+            Form form = new Form()
+                    .setBizKey(bizKey)
+                    .setNum(2D)
+                    .setRemark("只允许出差2天");
+            taskService.setVariable(task.getId(), "form", form);
+
+            taskService.complete(task.getId());
+
+        }
+    }
+
+    @Disabled
+    @Test
+    public void testTaskCompleteWithLocalVariable() throws Exception {
+        ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
+        TaskService taskService = processEngine.getTaskService();
+        Task task = taskService.createTaskQuery()
+                .processDefinitionKey("Process04")
+                .taskAssignee("lisi")
+                .singleResult();
+
+        if (null != task) {
+            Form form = new Form()
+                    .setBizKey(bizKey)
+                    .setNum(2D)
+                    .setRemark("只允许出差2天");
+            taskService.setVariableLocal(task.getId(), "form", form);
+
+            taskService.complete(task.getId());
+
+        }
     }
 }
