@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="Process05" name="测试流程07" isExecutable="true">
+    <startEvent id="Event_1k4omlu">
+      <outgoing>Flow_1vyrcy6</outgoing>
+    </startEvent>
+    <userTask id="Activity_0jwta2d" name="申请报销" activiti:assignee="aa">
+      <incoming>Flow_1vyrcy6</incoming>
+      <outgoing>Flow_1n543rq</outgoing>
+    </userTask>
+    <sequenceFlow id="Flow_1vyrcy6" sourceRef="Event_1k4omlu" targetRef="Activity_0jwta2d" />
+    <userTask id="Activity_0ohbd9x" name="账务报销审核" activiti:candidateUsers="bb,cc">
+      <incoming>Flow_1n543rq</incoming>
+      <outgoing>Flow_0d1cu2l</outgoing>
+    </userTask>
+    <sequenceFlow id="Flow_1n543rq" sourceRef="Activity_0jwta2d" targetRef="Activity_0ohbd9x" />
+    <endEvent id="Event_1lybmdn">
+      <incoming>Flow_0d1cu2l</incoming>
+    </endEvent>
+    <sequenceFlow id="Flow_0d1cu2l" sourceRef="Activity_0ohbd9x" targetRef="Event_1lybmdn" />
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Process07">
+    <bpmndi:BPMNPlane id="BPMNPlane_Process07" bpmnElement="Process05">
+      <bpmndi:BPMNShape id="Event_1k4omlu_di" bpmnElement="Event_1k4omlu">
+        <omgdc:Bounds x="162" y="82" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0jwta2d_di" bpmnElement="Activity_0jwta2d">
+        <omgdc:Bounds x="250" y="60" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ohbd9x_di" bpmnElement="Activity_0ohbd9x">
+        <omgdc:Bounds x="410" y="60" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1lybmdn_di" bpmnElement="Event_1lybmdn">
+        <omgdc:Bounds x="572" y="82" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1vyrcy6_di" bpmnElement="Flow_1vyrcy6">
+        <omgdi:waypoint x="198" y="100" />
+        <omgdi:waypoint x="250" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1n543rq_di" bpmnElement="Flow_1n543rq">
+        <omgdi:waypoint x="350" y="100" />
+        <omgdi:waypoint x="410" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0d1cu2l_di" bpmnElement="Flow_0d1cu2l">
+        <omgdi:waypoint x="510" y="100" />
+        <omgdi:waypoint x="572" y="100" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
