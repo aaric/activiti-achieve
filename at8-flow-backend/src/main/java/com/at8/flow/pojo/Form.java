@@ -17,6 +17,8 @@ public class Form implements Serializable {
 
     private String bizKey;
 
+    private Integer state;
+
     private Double num;
 
     private String remark;
