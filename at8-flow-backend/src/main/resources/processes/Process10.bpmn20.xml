@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" targetNamespace="http://www.activiti.org/processdef" exporter="Camunda Modeler" exporterVersion="5.16.0">
+  <process id="Process10" name="测试流程10" isExecutable="true">
+    <startEvent id="Event_1rrtw4e" name="开始">
+      <outgoing>Flow_1rkcd1u</outgoing>
+    </startEvent>
+    <userTask id="Activity_1ij1noy" name="流程01" activiti:assignee="aa">
+      <incoming>Flow_1rkcd1u</incoming>
+      <incoming>Flow_1t6dpdx</incoming>
+      <outgoing>Flow_0zr3p7o</outgoing>
+    </userTask>
+    <sequenceFlow id="Flow_1rkcd1u" sourceRef="Event_1rrtw4e" targetRef="Activity_1ij1noy" />
+    <userTask id="Activity_11bwgkp" name="流程01审核" activiti:assignee="bb">
+      <incoming>Flow_0zr3p7o</incoming>
+      <outgoing>Flow_1qdam6h</outgoing>
+      <outgoing>Flow_1t6dpdx</outgoing>
+    </userTask>
+    <sequenceFlow id="Flow_0zr3p7o" sourceRef="Activity_1ij1noy" targetRef="Activity_11bwgkp" />
+    <userTask id="Activity_1xkwap0" name="流程02" activiti:assignee="cc">
+      <incoming>Flow_1qdam6h</incoming>
+      <outgoing>Flow_1qgwnr7</outgoing>
+    </userTask>
+    <sequenceFlow id="Flow_1qdam6h" sourceRef="Activity_11bwgkp" targetRef="Activity_1xkwap0">
+      <conditionExpression xsi:type="tFormalExpression">${form.state == 1}</conditionExpression>
+    </sequenceFlow>
+    <endEvent id="Event_1h1557q" name="结束">
+      <incoming>Flow_1qgwnr7</incoming>
+    </endEvent>
+    <sequenceFlow id="Flow_1qgwnr7" sourceRef="Activity_1xkwap0" targetRef="Event_1h1557q" />
+    <sequenceFlow id="Flow_1t6dpdx" sourceRef="Activity_11bwgkp" targetRef="Activity_1ij1noy">
+      <conditionExpression xsi:type="tFormalExpression">${form.state != 1}</conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Process10">
+    <bpmndi:BPMNPlane id="BPMNPlane_Process10" bpmnElement="Process10">
+      <bpmndi:BPMNShape id="Event_1rrtw4e_di" bpmnElement="Event_1rrtw4e">
+        <omgdc:Bounds x="152" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="159" y="205" width="22" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ij1noy_di" bpmnElement="Activity_1ij1noy">
+        <omgdc:Bounds x="240" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_11bwgkp_di" bpmnElement="Activity_11bwgkp">
+        <omgdc:Bounds x="400" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1xkwap0_di" bpmnElement="Activity_1xkwap0">
+        <omgdc:Bounds x="560" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1h1557q_di" bpmnElement="Event_1h1557q">
+        <omgdc:Bounds x="722" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="729" y="205" width="22" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1rkcd1u_di" bpmnElement="Flow_1rkcd1u">
+        <omgdi:waypoint x="188" y="180" />
+        <omgdi:waypoint x="240" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1t6dpdx_di" bpmnElement="Flow_1t6dpdx">
+        <omgdi:waypoint x="450" y="140" />
+        <omgdi:waypoint x="450" y="100" />
+        <omgdi:waypoint x="290" y="100" />
+        <omgdi:waypoint x="290" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zr3p7o_di" bpmnElement="Flow_0zr3p7o">
+        <omgdi:waypoint x="340" y="180" />
+        <omgdi:waypoint x="400" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qdam6h_di" bpmnElement="Flow_1qdam6h">
+        <omgdi:waypoint x="500" y="180" />
+        <omgdi:waypoint x="560" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qgwnr7_di" bpmnElement="Flow_1qgwnr7">
+        <omgdi:waypoint x="660" y="180" />
+        <omgdi:waypoint x="722" y="180" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -33,7 +33,8 @@ public class BpmnGoBackTests {
     @Autowired
     private StandaloneProcessEngineConfiguration standaloneProcessEngineConfiguration;
 
-    private String bizKey = "custom012";
+    //private String bizKey = "custom012";
+    private String bizKey = "custom013";
 
     @Disabled
     @Test
@@ -44,9 +45,9 @@ public class BpmnGoBackTests {
 //        repositoryService.deleteDeployment("5001", true);
 
         Deployment deployment = repositoryService.createDeployment()
-                .addClasspathResource("processes/Process09.bpmn20.xml")
-                .addClasspathResource("processes/Process09.png")
-                .name("测试流程09")
+                .addClasspathResource("processes/Process10.bpmn20.xml")
+                .addClasspathResource("processes/Process10.png")
+                .name("测试流程10")
                 .deploy();
         log.info("id = {}, name = {}", deployment.getId(), deployment.getName());
     }
@@ -61,7 +62,7 @@ public class BpmnGoBackTests {
                 .setBizKey(bizKey)
                 .setState(0)
                 .setRemark("审核不通过");
-        ProcessInstance instance = runtimeService.startProcessInstanceByKey("Process09", bizKey, new HashMap<>() {{
+        ProcessInstance instance = runtimeService.startProcessInstanceByKey("Process10", bizKey, new HashMap<>() {{
             put("form", form);
         }});
         log.info("pdId={}, id={}", instance.getProcessDefinitionId(), instance.getId());
@@ -73,7 +74,7 @@ public class BpmnGoBackTests {
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
         TaskService taskService = processEngine.getTaskService();
         Task task = taskService.createTaskQuery()
-                .processDefinitionKey("Process09")
+                .processDefinitionKey("Process10")
                 .taskAssignee("bb")
                 .singleResult();
 
@@ -88,7 +89,7 @@ public class BpmnGoBackTests {
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
         TaskService taskService = processEngine.getTaskService();
         Task task = taskService.createTaskQuery()
-                .processDefinitionKey("Process09")
+                .processDefinitionKey("Process10")
                 .taskAssignee("cc")
                 .singleResult();
 
