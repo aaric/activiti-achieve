@@ -19,6 +19,7 @@ dependencies {
     implementation "mysql:mysql-connector-java"
 
     implementation "org.activiti:activiti-spring-boot-starter"
+    implementation "org.activiti:activiti-image-generator"
 //    implementation ("org.activiti:activiti-spring-boot-starter") {
 //        exclude group: "org.mybatis", module: "mybatis"
 //    }

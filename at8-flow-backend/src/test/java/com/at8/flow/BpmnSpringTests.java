@@ -14,6 +14,7 @@ import org.activiti.api.task.model.Task;
 import org.activiti.api.task.model.builders.TaskPayloadBuilder;
 import org.activiti.api.task.model.payloads.CompleteTaskPayload;
 import org.activiti.api.task.runtime.TaskRuntime;
+import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Deployment;
 import org.junit.jupiter.api.Disabled;
@@ -45,6 +46,9 @@ public class BpmnSpringTests {
     @Autowired
     private TaskRuntime taskRuntime;
 
+    @Autowired
+    private HistoryService historyService;
+
     private String bizKey = "demo01";
 
     @Autowired
@@ -56,11 +60,11 @@ public class BpmnSpringTests {
 //        repositoryService.deleteDeployment("5001", true);
 
         Deployment deployment = repositoryService.createDeployment()
-                .addClasspathResource("processes/Demo01.bpmn20.xml")
-                .addClasspathResource("processes/Demo01.bpmn20.png")
+                .addClasspathResource("bpmn/Demo01.bpmn20.xml")
+                .addClasspathResource("bpmn/Demo01.bpmn20.png")
                 .name("示例流程01")
                 .deploy();
-        log.info("id = {}, name = {}", deployment.getId(), deployment.getName());
+        log.info("id={}, name={}", deployment.getId(), deployment.getName());
     }
 
     @Disabled
@@ -74,7 +78,7 @@ public class BpmnSpringTests {
         }
     }
 
-    @Disabled
+    //    @Disabled
     @Test
     public void testFlowStart() throws Exception {
         securityUtil.loginAs("aa");
@@ -96,7 +100,7 @@ public class BpmnSpringTests {
     @Disabled
     @Test
     public void testTaskCompleteWithStateFailure() throws Exception {
-        securityUtil.loginAs("bb");
+        securityUtil.loginAs("cc");
 
         Page<Task> taskPage = taskRuntime.tasks(Pageable.of(0, 100));
         for (Task task : taskPage.getContent()) {
@@ -110,7 +114,7 @@ public class BpmnSpringTests {
         }
     }
 
-    //    @Disabled
+    @Disabled
     @Test
     public void testTaskCompleteWithStateOk() throws Exception {
         securityUtil.loginAs("bb");
