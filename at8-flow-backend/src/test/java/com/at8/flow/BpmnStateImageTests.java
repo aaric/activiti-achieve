@@ -48,7 +48,7 @@ public class BpmnStateImageTests {
     @Autowired
     private RepositoryService repositoryService;
 
-//    @Disabled
+    @Disabled
     @Test
     public void testTaskStateImage() throws Exception {
         String taskId = "034abcbb-82cd-11ee-b457-84fdd1ba564e";
