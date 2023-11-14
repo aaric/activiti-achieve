@@ -86,6 +86,7 @@ spring:
 #      password: ${REDIS_PASSWORD:redis2019}
 #      database: ${REDIS_DATABASE:2}
   activiti:
+    deployment-mode: never-fail
     database-schema-update: true
     db-history-used: true
     history-level: full

@@ -37,7 +37,7 @@ public class BpmnGatewayInclusiveTests {
 
     @Disabled
     @Test
-    public void testFlowDeployZip() throws Exception {
+    public void testFlowDeploy() throws Exception {
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
         RepositoryService repositoryService = processEngine.getRepositoryService();
 
