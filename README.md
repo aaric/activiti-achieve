@@ -6,7 +6,7 @@
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.0.2-brightgreen.svg?style=flat&logo=springboot)](https://docs.spring.io/spring-boot/docs/3.0.2/reference/htmlsingle/)
 [![Spring Cloud](https://img.shields.io/badge/Spring_Cloud-2022.0.0-brightgreen.svg?style=flat&logo=spring)](https://docs.spring.io/spring-cloud/docs/2020.0.0/reference/htmlsingle/)
 [![Spring Cloud Alibaba](https://img.shields.io/badge/Spring_Cloud_Alibaba-2022.0.0.0-brightgreen.svg?style=flat&logo=alibabacloud)](https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.html)
-[![Release](https://img.shields.io/badge/Release-0.9.0-blue.svg)](https://github.com/aaric/activiti-achieve/releases)
+[![Release](https://img.shields.io/badge/Release-0.10.0-blue.svg)](https://github.com/aaric/activiti-achieve/releases)
 
 > Activiti 7.4 Learning.
 

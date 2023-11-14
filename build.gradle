@@ -8,7 +8,7 @@ plugins {
 
 allprojects {
     group = "com.at7"
-    version = "0.9.0-SNAPSHOT"
+    version = "0.10.0-SNAPSHOT"
 
     ext {
         // https://github.com/alibaba/spring-cloud-alibaba/wiki/版本说明#毕业版本依赖关系推荐使用
@@ -24,7 +24,7 @@ allprojects {
     repositories {
         maven { url "https://maven.aliyun.com/repository/public" }
         maven { url "https://repository.incarcloud.com/content/groups/public" }
-        maven { url "https://artifacts.alfresco.com/nexus/content/repositories/activiti-releases" }
+//        maven { url "https://artifacts.alfresco.com/nexus/content/repositories/activiti-releases" }
     }
 }
 

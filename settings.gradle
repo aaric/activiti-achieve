@@ -8,4 +8,4 @@ rootProject.name = "activiti-achieve"
 
 include "at7-flow-runner"
 include "at8-flow-runner"
-//include "at8-flow-backend"
+include "at8-flow-backend"
