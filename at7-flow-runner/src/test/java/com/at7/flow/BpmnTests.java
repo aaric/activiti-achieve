@@ -40,7 +40,7 @@ public class BpmnTests {
     @Autowired
     private StandaloneProcessEngineConfiguration standaloneProcessEngineConfiguration;
 
-    @Disabled
+//    @Disabled
     @Test
     public void testInitDb() throws Exception {
         standaloneProcessEngineConfiguration.buildProcessEngine();

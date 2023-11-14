@@ -1,11 +1,11 @@
 # Undertow settings
-server:
-  port: ${SERVER_PORT:8080}
-  undertow:
-    threads:
-      io: ${UNDERTOW_IO_THREADS:1}
-      worker: ${UNDERTOW_WORKER_THREADS:8}
-    buffer-size: ${UNDERTOW_BUFFER_SIZE:1024}
+#server:
+#  port: ${SERVER_PORT:8080}
+#  undertow:
+#    threads:
+#      io: ${UNDERTOW_IO_THREADS:1}
+#      worker: ${UNDERTOW_WORKER_THREADS:8}
+#    buffer-size: ${UNDERTOW_BUFFER_SIZE:1024}
 
 # Logging settings
 logging:
@@ -28,26 +28,26 @@ logging:
 
 # Spring doc settings
 # https://springdoc.org/#springdoc-openapi-core-properties
-springdoc:
-  api-docs:
-    path: /v3/api-docs
-    groups:
-      enabled: true
-  group-configs:
-    - group: 'default'
-      display-name: 'default'
-      paths-to-match: /api/v1/**
-      packages-to-scan: com.at7.flow.api
-  default-flat-param-object: true
+#springdoc:
+#  api-docs:
+#    path: /v3/api-docs
+#    groups:
+#      enabled: true
+#  group-configs:
+#    - group: 'default'
+#      display-name: 'default'
+#      paths-to-match: /api/v1/**
+#      packages-to-scan: com.at7.flow.api
+#  default-flat-param-object: true
 
 # Knife4j settings
 # https://doc.xiaominfo.com/docs/features/enhance
-knife4j:
-  enable: true
-  setting:
-    language: zh_cn
-    enableFooterCustom: true
-    footerCustomContent: Copyright @ 2023 Rights Reserved.
+#knife4j:
+#  enable: true
+#  setting:
+#    language: zh_cn
+#    enableFooterCustom: true
+#    footerCustomContent: Copyright @ 2023 Rights Reserved.
 
 # Spring settings
 spring:
@@ -80,18 +80,18 @@ spring:
       time-between-eviction-runs-millis: 60000
       min-evictable-idle-time-millis: 300000
       filters: stat,wall
-    redis:
-      host: ${REDIS_HOST:10.0.11.23}
-      port: ${REDIS_PORT:6379}
-      password: ${REDIS_PASSWORD:redis2019}
-      database: ${REDIS_DATABASE:2}
+#    redis:
+#      host: ${REDIS_HOST:10.0.11.23}
+#      port: ${REDIS_PORT:6379}
+#      password: ${REDIS_PASSWORD:redis2019}
+#      database: ${REDIS_DATABASE:2}
 
 # MyBatis-Plus settings
-mybatis-plus:
-  mapper-locations: classpath*:mapper/**Mapper.xml
-  global-config:
-    db-column-underline: true
-    refresh-mapper: true
-  configuration:
-    map-underscore-to-camel-case: true
-    cache-enabled: false
+#mybatis-plus:
+#  mapper-locations: classpath*:mapper/**Mapper.xml
+#  global-config:
+#    db-column-underline: true
+#    refresh-mapper: true
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    cache-enabled: false
