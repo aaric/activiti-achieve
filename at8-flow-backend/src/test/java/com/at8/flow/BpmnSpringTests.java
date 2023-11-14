@@ -10,10 +10,12 @@ import org.activiti.api.process.model.payloads.StartProcessPayload;
 import org.activiti.api.process.runtime.ProcessRuntime;
 import org.activiti.api.runtime.shared.query.Page;
 import org.activiti.api.runtime.shared.query.Pageable;
+import org.activiti.api.task.model.Task;
+import org.activiti.api.task.model.builders.TaskPayloadBuilder;
+import org.activiti.api.task.model.payloads.CompleteTaskPayload;
+import org.activiti.api.task.runtime.TaskRuntime;
 import org.activiti.engine.RepositoryService;
-import org.activiti.engine.TaskService;
 import org.activiti.engine.repository.Deployment;
-import org.activiti.engine.task.Task;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,7 +43,7 @@ public class BpmnSpringTests {
     private ProcessRuntime processRuntime;
 
     @Autowired
-    private TaskService taskService;
+    private TaskRuntime taskRuntime;
 
     private String bizKey = "demo01";
 
@@ -75,14 +77,12 @@ public class BpmnSpringTests {
     @Disabled
     @Test
     public void testFlowStart() throws Exception {
+        securityUtil.loginAs("aa");
+
         Form form = new Form()
                 .setBizKey(bizKey)
                 .setState(0)
                 .setRemark("审核不通过");
-//        ProcessInstance instance = runtimeService.startProcessInstanceByKey("Demo01", bizKey, new HashMap<>() {{
-//            put("form", form);
-//        }});
-        securityUtil.loginAs("aa");
 
         StartProcessPayload payload = ProcessPayloadBuilder.start()
                 .withProcessDefinitionId("Demo01")
@@ -96,32 +96,42 @@ public class BpmnSpringTests {
     @Disabled
     @Test
     public void testTaskCompleteWithStateFailure() throws Exception {
-        Task task = taskService.createTaskQuery()
-                .processDefinitionKey("Demo01")
-                .taskAssignee("bb")
-                .singleResult();
+        securityUtil.loginAs("bb");
 
-        if (null != task) {
-            taskService.complete(task.getId());
+        Page<Task> taskPage = taskRuntime.tasks(Pageable.of(0, 100));
+        for (Task task : taskPage.getContent()) {
+            log.info("id={}, name={}", task.getId(), task.getName());
+
+            CompleteTaskPayload payload = TaskPayloadBuilder
+                    .complete()
+                    .withTaskId(task.getId())
+                    .build();
+            taskRuntime.complete(payload);
         }
     }
 
-    @Disabled
+    //    @Disabled
     @Test
     public void testTaskCompleteWithStateOk() throws Exception {
-        Task task = taskService.createTaskQuery()
-                .processDefinitionKey("Demo01")
-                .taskAssignee("cc")
-                .singleResult();
+        securityUtil.loginAs("bb");
 
-        if (null != task) {
-            Form form = new Form()
-                    .setBizKey(bizKey)
-                    .setState(1)
-                    .setRemark("审核通过");
-            taskService.complete(task.getId(), new HashMap<>() {{
-                put("form", form);
-            }});
+        Form form = new Form()
+                .setBizKey(bizKey)
+                .setState(1)
+                .setRemark("审核通过");
+
+        Page<Task> taskPage = taskRuntime.tasks(Pageable.of(0, 100));
+        for (Task task : taskPage.getContent()) {
+            log.info("id={}, name={}", task.getId(), task.getName());
+
+            CompleteTaskPayload payload = TaskPayloadBuilder
+                    .complete()
+                    .withTaskId(task.getId())
+                    .withVariables(new HashMap<>() {{
+                        put("form", form);
+                    }})
+                    .build();
+            taskRuntime.complete(payload);
         }
     }
 }

@@ -64,7 +64,7 @@ public class SecurityUtil {
 
                 @Override
                 public String getName() {
-                    return null;
+                    return userDetails.getUsername();
                 }
             }));
         }

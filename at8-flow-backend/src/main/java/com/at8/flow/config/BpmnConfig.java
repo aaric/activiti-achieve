@@ -36,9 +36,11 @@ public class BpmnConfig {
 //        return processEngineConfiguration().buildProcessEngine();
 //    }
 
-    /**
-     * 禁用SecuritySecurity，提供UserDetailsService定义，此处仅为解决启动报错
-     */
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Bean
     UserDetailsService inMemoryUserDetailsService() {
         /*return new UserDetailsService() {
@@ -59,10 +61,5 @@ public class BpmnConfig {
         userDetailsManager.createUser(new User("admin", passwordEncoder().encode("test123"),
                 Arrays.asList("ROLE_ACTIVITI_ADMIN").stream().map(SimpleGrantedAuthority::new).toList()));
         return userDetailsManager;
-    }
-
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }
