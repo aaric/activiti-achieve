@@ -83,7 +83,7 @@ public class BpmnGoBackTests {
         }
     }
 
-    @Disabled
+//    @Disabled
     @Test
     public void testTaskCompleteWithStateOk() throws Exception {
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
