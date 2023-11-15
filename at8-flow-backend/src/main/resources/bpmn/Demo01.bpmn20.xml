@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" targetNamespace="http://www.activiti.org/processdef" exporter="Camunda Modeler" exporterVersion="5.16.0">
+  <process id="Demo01" name="示例流程01" isExecutable="true">
+    <startEvent id="Event_1pl4ehr">
+      <outgoing>Flow_0ip29x0</outgoing>
+    </startEvent>
+    <userTask id="Activity_1pqzfep" name="流程01" activiti:assignee="aa">
+      <incoming>Flow_0ip29x0</incoming>
+      <incoming>Flow_1tigu5p</incoming>
+      <outgoing>Flow_1strwv7</outgoing>
+    </userTask>
+    <sequenceFlow id="Flow_0ip29x0" sourceRef="Event_1pl4ehr" targetRef="Activity_1pqzfep" />
+    <userTask id="Activity_1v5kxgl" name="流程01审核" activiti:assignee="bb">
+      <incoming>Flow_1strwv7</incoming>
+      <outgoing>Flow_0q6vudr</outgoing>
+      <outgoing>Flow_1tigu5p</outgoing>
+    </userTask>
+    <sequenceFlow id="Flow_1strwv7" sourceRef="Activity_1pqzfep" targetRef="Activity_1v5kxgl" />
+    <userTask id="Activity_1xlfj86" name="流程02" activiti:assignee="cc">
+      <incoming>Flow_0q6vudr</incoming>
+      <outgoing>Flow_0wb2uco</outgoing>
+    </userTask>
+    <sequenceFlow id="Flow_0q6vudr" sourceRef="Activity_1v5kxgl" targetRef="Activity_1xlfj86">
+      <conditionExpression xsi:type="tFormalExpression">${form.state == 1}</conditionExpression>
+    </sequenceFlow>
+    <endEvent id="Event_0983vsv">
+      <incoming>Flow_0wb2uco</incoming>
+    </endEvent>
+    <sequenceFlow id="Flow_0wb2uco" sourceRef="Activity_1xlfj86" targetRef="Event_0983vsv" />
+    <sequenceFlow id="Flow_1tigu5p" sourceRef="Activity_1v5kxgl" targetRef="Activity_1pqzfep">
+      <conditionExpression xsi:type="tFormalExpression">${form.state != 1}</conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Demo01">
+    <bpmndi:BPMNPlane id="BPMNPlane_Demo01" bpmnElement="Demo01">
+      <bpmndi:BPMNShape id="Event_1pl4ehr_di" bpmnElement="Event_1pl4ehr">
+        <omgdc:Bounds x="152" y="162" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1pqzfep_di" bpmnElement="Activity_1pqzfep">
+        <omgdc:Bounds x="240" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1v5kxgl_di" bpmnElement="Activity_1v5kxgl">
+        <omgdc:Bounds x="400" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1xlfj86_di" bpmnElement="Activity_1xlfj86">
+        <omgdc:Bounds x="560" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0983vsv_di" bpmnElement="Event_0983vsv">
+        <omgdc:Bounds x="722" y="162" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0ip29x0_di" bpmnElement="Flow_0ip29x0">
+        <omgdi:waypoint x="188" y="180" />
+        <omgdi:waypoint x="240" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1strwv7_di" bpmnElement="Flow_1strwv7">
+        <omgdi:waypoint x="340" y="180" />
+        <omgdi:waypoint x="400" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0q6vudr_di" bpmnElement="Flow_0q6vudr">
+        <omgdi:waypoint x="500" y="180" />
+        <omgdi:waypoint x="560" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wb2uco_di" bpmnElement="Flow_0wb2uco">
+        <omgdi:waypoint x="660" y="180" />
+        <omgdi:waypoint x="722" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1tigu5p_di" bpmnElement="Flow_1tigu5p">
+        <omgdi:waypoint x="450" y="140" />
+        <omgdi:waypoint x="450" y="100" />
+        <omgdi:waypoint x="290" y="100" />
+        <omgdi:waypoint x="290" y="140" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

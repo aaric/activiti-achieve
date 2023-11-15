@@ -38,7 +38,7 @@ public class BpmnGoBackTests {
 
     @Disabled
     @Test
-    public void testFlowDeployZip() throws Exception {
+    public void testFlowDeploy() throws Exception {
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();
         RepositoryService repositoryService = processEngine.getRepositoryService();
 
@@ -83,7 +83,7 @@ public class BpmnGoBackTests {
         }
     }
 
-//    @Disabled
+    @Disabled
     @Test
     public void testTaskCompleteWithStateOk() throws Exception {
         ProcessEngine processEngine = standaloneProcessEngineConfiguration.buildProcessEngine();

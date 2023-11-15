@@ -1,0 +1,104 @@
+# Undertow settings
+server:
+  port: ${SERVER_PORT:8080}
+  undertow:
+    threads:
+      io: ${UNDERTOW_IO_THREADS:1}
+      worker: ${UNDERTOW_WORKER_THREADS:8}
+    buffer-size: ${UNDERTOW_BUFFER_SIZE:1024}
+
+# Logging settings
+logging:
+  level:
+    root: ERROR
+    org:
+      springframework:
+        web: ERROR
+        security: INFO
+        boot: INFO
+      hibernate: INFO
+      activiti: DEBUG
+    com:
+      at8: DEBUG
+  file:
+    path: ${LOGGING_FILE_PATH:./}
+    name: output.log
+    max-size: ${LOGGING_FILE_MAX_SIZE:300MB}
+    max-history: ${LOGGING_FILE_MAX_HISTORY:3}
+
+# Spring doc settings
+# https://springdoc.org/#springdoc-openapi-core-properties
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    groups:
+      enabled: true
+  group-configs:
+    - group: 'default'
+      display-name: 'default'
+      paths-to-match: /api/v1/**
+      packages-to-scan: com.at8.flow.api
+  default-flat-param-object: true
+
+# Knife4j settings
+# https://doc.xiaominfo.com/docs/features/enhance
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+    enableFooterCustom: true
+    footerCustomContent: Copyright @ 2023 Rights Reserved.
+
+# Spring settings
+spring:
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  application:
+    name: at8-flow-backend
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:10.0.11.21}:${MYSQL_PORT:33067}/${MYSQL_DATABASE:at8db}?useSSL=false&characterEncoding=utf8&useUnicode=true&zeroDateTimeBehavior=convertToNull&nullCatalogMeansCurrent=true
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5
+      max-active: 20
+      min-idle: 5
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      max-open-prepared-statements: 20
+      validation-query: SELECT 1 FROM DUAL
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      filters: stat,wall
+#    redis:
+#      host: ${REDIS_HOST:10.0.11.23}
+#      port: ${REDIS_PORT:6379}
+#      password: ${REDIS_PASSWORD:redis2019}
+#      database: ${REDIS_DATABASE:2}
+  activiti:
+    deployment-mode: never-fail
+    database-schema-update: true
+    db-history-used: true
+    history-level: full
+    check-process-definitions: false
+    async-executor-activate: false
+
+# MyBatis-Plus settings
+#mybatis-plus:
+#  mapper-locations: classpath*:mapper/**Mapper.xml
+#  global-config:
+#    db-column-underline: true
+#    refresh-mapper: true
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    cache-enabled: false
