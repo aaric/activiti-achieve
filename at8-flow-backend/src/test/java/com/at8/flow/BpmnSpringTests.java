@@ -57,7 +57,7 @@ public class BpmnSpringTests {
     @Disabled
     @Test
     public void testFlowDeploy() throws Exception {
-//        repositoryService.deleteDeployment("5001", true);
+//        repositoryService.deleteDeployment("3c2438c0-82cc-11ee-99a7-84fdd1ba564e", true);
 
         Deployment deployment = repositoryService.createDeployment()
                 .addClasspathResource("bpmn/Demo01.bpmn20.xml")
@@ -78,7 +78,7 @@ public class BpmnSpringTests {
         }
     }
 
-    //    @Disabled
+    @Disabled
     @Test
     public void testFlowStart() throws Exception {
         securityUtil.loginAs("aa");

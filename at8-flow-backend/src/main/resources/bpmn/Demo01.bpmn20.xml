@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
-    <process id="Demo01" name="示例流程01" isExecutable="true">
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" targetNamespace="http://www.activiti.org/processdef" exporter="Camunda Modeler" exporterVersion="5.16.0">
+  <process id="Demo01" name="示例流程01" isExecutable="true">
     <startEvent id="Event_1pl4ehr">
       <outgoing>Flow_0ip29x0</outgoing>
     </startEvent>
@@ -20,13 +20,13 @@
       <incoming>Flow_0q6vudr</incoming>
       <outgoing>Flow_0wb2uco</outgoing>
     </userTask>
-    <sequenceFlow id="Flow_0q6vudr" sourceRef="Activity_1v5kxgl" targetRef="Activity_1xlfj86" />
+    <sequenceFlow id="Flow_0q6vudr" sourceRef="Activity_1v5kxgl" targetRef="Activity_1xlfj86">
+      <conditionExpression xsi:type="tFormalExpression">${form.state == 1}</conditionExpression>
+    </sequenceFlow>
     <endEvent id="Event_0983vsv">
       <incoming>Flow_0wb2uco</incoming>
     </endEvent>
-    <sequenceFlow id="Flow_0wb2uco" sourceRef="Activity_1xlfj86" targetRef="Event_0983vsv">
-      <conditionExpression xsi:type="tFormalExpression">${form.state == 1}</conditionExpression>
-    </sequenceFlow>
+    <sequenceFlow id="Flow_0wb2uco" sourceRef="Activity_1xlfj86" targetRef="Event_0983vsv" />
     <sequenceFlow id="Flow_1tigu5p" sourceRef="Activity_1v5kxgl" targetRef="Activity_1pqzfep">
       <conditionExpression xsi:type="tFormalExpression">${form.state != 1}</conditionExpression>
     </sequenceFlow>
