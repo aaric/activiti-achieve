@@ -12,17 +12,17 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-undertow"
     implementation "org.springframework.boot:spring-boot-starter-validation"
 
-//    implementation "org.springframework.boot:spring-boot-starter-data-redis"
+    implementation "org.springframework.boot:spring-boot-starter-data-redis"
 
-//    implementation "com.baomidou:mybatis-plus-boot-starter"
+    implementation "com.baomidou:mybatis-plus-boot-starter"
     implementation "com.alibaba:druid-spring-boot-starter"
     implementation "mysql:mysql-connector-java"
 
-    implementation "org.activiti:activiti-spring-boot-starter"
+//    implementation "org.activiti:activiti-spring-boot-starter"
+    implementation("org.activiti:activiti-spring-boot-starter") {
+        exclude group: "org.mybatis", module: "mybatis"
+    }
     implementation "org.activiti:activiti-image-generator"
-//    implementation ("org.activiti:activiti-spring-boot-starter") {
-//        exclude group: "org.mybatis", module: "mybatis"
-//    }
 //    implementation "org.activiti:activiti-engine"
 //    implementation "org.activiti:activiti-spring"
 //    implementation "org.activiti:activiti-bpmn-model"
