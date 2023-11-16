@@ -31,4 +31,8 @@ public class ApiData<T> implements ApiCode {
     public ApiData(T data) {
         this.data = data;
     }
+
+    public static <T> ApiData<T> of(T data) {
+        return new ApiData<>(data);
+    }
 }
