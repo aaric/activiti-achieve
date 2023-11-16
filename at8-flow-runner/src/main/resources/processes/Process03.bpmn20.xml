@@ -7,7 +7,7 @@
     </startEvent>
     <userTask id="Activity_1ol4k7e" name="创建申请">
       <extensionElements>
-        <activiti:taskListener class="com.at8.flow.bpmn.listener.task.MyTaskListener" event="create" />
+        <activiti:taskListener class="com.at8.flow.api.bpmn.listener.task.MyTaskListener" event="create" />
       </extensionElements>
       <incoming>Flow_1804lws</incoming>
       <outgoing>Flow_04rsiyn</outgoing>
@@ -15,7 +15,7 @@
     <sequenceFlow id="Flow_1804lws" sourceRef="Event_0k6ehdv" targetRef="Activity_1ol4k7e" />
     <userTask id="Activity_02oudzs" name="审核申请">
       <extensionElements>
-        <activiti:taskListener class="com.at8.flow.bpmn.listener.task.MyTaskListener" event="create" />
+        <activiti:taskListener class="com.at8.flow.api.bpmn.listener.task.MyTaskListener" event="create" />
       </extensionElements>
       <incoming>Flow_04rsiyn</incoming>
       <outgoing>Flow_1bsjwl8</outgoing>

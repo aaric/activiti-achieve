@@ -80,11 +80,12 @@ spring:
       time-between-eviction-runs-millis: 60000
       min-evictable-idle-time-millis: 300000
       filters: stat,wall
-#    redis:
-#      host: ${REDIS_HOST:10.0.11.23}
-#      port: ${REDIS_PORT:6379}
-#      password: ${REDIS_PASSWORD:redis2019}
-#      database: ${REDIS_DATABASE:2}
+  data:
+    redis:
+      host: ${REDIS_HOST:10.0.11.23}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:redis2019}
+      database: ${REDIS_DATABASE:2}
   activiti:
     deployment-mode: never-fail
     database-schema-update: true
@@ -94,11 +95,11 @@ spring:
     async-executor-activate: false
 
 # MyBatis-Plus settings
-#mybatis-plus:
-#  mapper-locations: classpath*:mapper/**Mapper.xml
-#  global-config:
-#    db-column-underline: true
-#    refresh-mapper: true
-#  configuration:
-#    map-underscore-to-camel-case: true
-#    cache-enabled: false
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**Mapper.xml
+  global-config:
+    db-column-underline: true
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
