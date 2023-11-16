@@ -172,7 +172,7 @@ public class FlowController implements FlowApi {
     @Override
     @GetMapping(value = "/task/diagram/{taskId}")
     public ResponseEntity<byte[]> taskDiagram(@PathVariable String taskId) throws Exception {
-        // 获取文件存储信息
+        // 获取任务信息
         Task task = taskService.createTaskQuery()
                 .taskId(taskId)
                 .singleResult();

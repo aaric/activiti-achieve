@@ -64,7 +64,7 @@ public class ResourceController implements ResourceApi {
         File destFile = new File(FilePathUtil.getAppDateDir(), FilePathUtil.newTimeFilename(selectFile.getOriginalFilename()));
         selectFile.transferTo(destFile);
         log.info("upload -> destFile={}", destFile.getAbsolutePath());
-        return new ApiData<>(storageFileWithCache(destFile));
+        return ApiData.of(storageFileWithCache(destFile));
     }
 
     @Override
