@@ -8,7 +8,7 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 
 /**
- * Form
+ * FormData
  *
  * @author Aaric
  * @version 0.6.0-SNAPSHOT
@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Data
 @Accessors(chain = true)
 @Tag(name = "表单数据")
-public class Form implements Serializable {
+public class FormData implements Serializable {
 
     @Schema(description = "业务Key")
     private String bizKey;

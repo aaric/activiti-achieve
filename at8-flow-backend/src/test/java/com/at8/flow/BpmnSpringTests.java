@@ -1,6 +1,6 @@
 package com.at8.flow;
 
-import com.at8.flow.pojo.Form;
+import com.at8.flow.pojo.FormData;
 import com.at8.flow.util.SecurityUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.activiti.api.process.model.ProcessDefinition;
@@ -83,7 +83,7 @@ public class BpmnSpringTests {
     public void testFlowStart() throws Exception {
         securityUtil.loginAs("aa");
 
-        Form form = new Form()
+        FormData form = new FormData()
                 .setBizKey(bizKey)
                 .setState(0)
                 .setRemark("审核不通过");
@@ -119,7 +119,7 @@ public class BpmnSpringTests {
     public void testTaskCompleteWithStateOk() throws Exception {
         securityUtil.loginAs("bb");
 
-        Form form = new Form()
+        FormData form = new FormData()
                 .setBizKey(bizKey)
                 .setState(1)
                 .setRemark("审核通过");

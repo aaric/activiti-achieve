@@ -3,7 +3,7 @@ package com.at8.flow.api.bpmn.impl;
 import com.at8.flow.api.bpmn.FlowApi;
 import com.at8.flow.core.data.ApiData;
 import com.at8.flow.pojo.BpmnData;
-import com.at8.flow.pojo.Form;
+import com.at8.flow.pojo.FormData;
 import com.at8.flow.util.FilePathUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -115,7 +115,7 @@ public class FlowController implements FlowApi {
     @Override
     @PostMapping(value = "/process/start")
     public ApiData<BpmnData> processStart(@RequestParam String processKey, @RequestParam String bizKey) {
-        Form form = new Form()
+        FormData form = new FormData()
                 .setBizKey(bizKey)
                 .setState(1)
                 .setRemark("默认审核通过");
@@ -185,7 +185,7 @@ public class FlowController implements FlowApi {
             BpmnModel bpmnModel = repositoryService.getBpmnModel(processInstance.getProcessDefinitionId());
 
             // 统一字体：宋体
-            String fontName = "Simsun";
+            String fontName = "SimSun";
             ProcessDiagramGenerator processDiagramGenerator = new DefaultProcessDiagramGenerator();
             List<String> highLightedActivityIdList = runtimeService.getActiveActivityIds(task.getExecutionId());
             List<String> highLightedFlowIdList = new ArrayList<>();

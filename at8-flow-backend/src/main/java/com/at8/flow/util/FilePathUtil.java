@@ -55,8 +55,7 @@ public final class FilePathUtil {
     }
 
     public static String newTimeFilename(String filename) {
-        return DateTimeFormatter.ofPattern("HHmmss-").format(LocalDateTime.now()) +
-                filename;
+        return DateTimeFormatter.ofPattern("HHmmss-").format(LocalDateTime.now()) + filename;
     }
 
     public static InputStream getInputStream(String filePath) throws IOException {

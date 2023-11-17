@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
  *
  * @author Aaric
  * @version 0.3.0-SNAPSHOT
+ * @param <T> 支持泛型
  */
 @Data
 @NoArgsConstructor
