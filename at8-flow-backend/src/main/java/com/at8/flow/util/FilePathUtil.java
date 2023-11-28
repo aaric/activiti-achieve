@@ -25,8 +25,6 @@ public final class FilePathUtil {
 
     public static final String APPLICATION_PATH = new ApplicationHome(FilePathUtil.class).getDir().getPath();
     public static final String DESKTOP_PATH = FileSystemView.getFileSystemView().getHomeDirectory().getAbsolutePath();
-    public static final String DESKTOP_TEST_PATH = DESKTOP_PATH + File.separator + "test";
-    public static final String DESKTOP_TEST_IMG_PATH = DESKTOP_PATH + File.separator + "test-img";
 
     private FilePathUtil() {
 
